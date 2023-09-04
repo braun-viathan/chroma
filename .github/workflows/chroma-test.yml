@@ -5,14 +5,10 @@ on:
     branches:
       - main
       - team/hypothesis-tests
-    branches-ignore:
-      - 'deployment' # This workflow will ignore pushes to 'deployments' branch
   pull_request:
     branches:
       - main
       - '**'
-    branches-ignore:
-      - 'deployment' # This workflow will ignore pushes to 'deployments' branch
 
 jobs:
   test:
@@ -28,6 +24,7 @@ jobs:
                    "chromadb/test/property/test_embeddings.py",
                    "chromadb/test/property/test_filtering.py",
                    "chromadb/test/property/test_persist.py"]
+    if: github.ref != 'refs/heads/deployment'
     runs-on: ${{ matrix.platform }}
     steps:
     - name: Checkout
