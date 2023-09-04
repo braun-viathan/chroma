@@ -5,12 +5,12 @@ on:
     branches:
       - main
       - team/hypothesis-tests
+    branches-ignore:
+      - 'deployments' # This workflow will ignore pushes to 'deployments' branch
   pull_request:
     branches:
       - main
       - '**'
-    branches-ignore:
-      - 'deployments' # This workflow will ignore pushes to 'deployments' branch
 
 jobs:
   test:
