@@ -8,7 +8,8 @@ networks:
 
 services:
   server:
-    image: server
+    # image: server
+    image: ${REGISTRY_NAME}/${IMAGE_NAME}:latest
     build:
       context: .
       dockerfile: Dockerfile

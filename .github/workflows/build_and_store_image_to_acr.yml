@@ -1,0 +1,30 @@
+name: Build and Push to ACR
+
+on:
+  push:
+    branches:
+      - deployments # Set a branch to trigger the workflow
+
+env:
+  REGISTRY_NAME: aivertragsdaten.azurecr.io
+  IMAGE_NAME: ai-chroma
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Log in to ACR
+      uses: azure/docker-login@v1
+      with:
+        login-server: ${{ secrets.REGISTRY_NAME }}
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
+
+    - name: Build and push Docker Compose
+      run: |
+        docker-compose build
+        docker-compose push
