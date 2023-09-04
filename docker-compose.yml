@@ -29,7 +29,7 @@ services:
       - "8324:8324"
     networks:
       - net
-      - traefik
+      # - traefik
     expose:
       - 8324
     # labels:
