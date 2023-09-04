@@ -3,7 +3,7 @@ name: Build and Push to ACR
 on:
   push:
     branches:
-      - deployments # Set a branch to trigger the workflow
+      - deployment # Set a branch to trigger the workflow
 
 env:
   REGISTRY_NAME: aivertragsdaten.azurecr.io
