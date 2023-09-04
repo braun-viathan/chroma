@@ -3,6 +3,8 @@
 ```
 docker-compose --env-file ./.chroma_env up -d --build
 ```
+This branch is for local development with traeffik and docker-compose. It is not intended for production use.
+
 
 # Chroma Readme
 <p align="center">
