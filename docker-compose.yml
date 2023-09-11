@@ -3,13 +3,14 @@ version: '3.9'
 networks:
   net:
     driver: bridge
-  # traefik:
-  #   external: true
+  traefik:
+    external: true
 
 services:
   server:
     # image: server
-    image: ${REGISTRY_NAME}/${IMAGE_NAME}:latest
+    # image: ${REGISTRY_NAME}/${IMAGE_NAME}:latest
+    image: aivertragsdaten/ai-chroma:latest
     build:
       context: .
       dockerfile: Dockerfile
@@ -29,14 +30,14 @@ services:
       - "8324:8324"
     networks:
       - net
-      # - traefik
+      - traefik
     expose:
       - 8324
-    # labels:
-    #   - "traefik.enable=true"
-    #   - "traefik.http.routers.chroma.rule=Host(`chroma.local`)"
-    #   - "traefik.http.routers.chroma.entrypoints=chroma"
-    #   - "traefik.http.services.chroma.loadbalancer.server.port=8324"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.chroma.rule=Host(`chroma.local`)"
+      - "traefik.http.routers.chroma.entrypoints=chroma"
+      - "traefik.http.services.chroma.loadbalancer.server.port=8324"
 
 volumes:
   index_data:
