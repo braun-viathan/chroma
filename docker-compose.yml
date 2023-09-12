@@ -18,7 +18,7 @@ services:
     volumes:
       - ./:/chroma
       - index_data:/index_data
-    command: uvicorn chromadb.app:app --reload --workers 1 --host 0.0.0.0 --port 8324 --log-config log_config.yml
+    command: uvicorn chromadb.app:app --reload --workers 1 --host 0.0.0.0 --port 80 --log-config log_config.yml
     environment:
       - IS_PERSISTENT=TRUE
       - CHROMA_SERVER_AUTH_PROVIDER=${CHROMA_SERVER_AUTH_PROVIDER}
@@ -26,12 +26,12 @@ services:
       - CHROMA_SERVER_AUTH_CREDENTIALS=${CHROMA_SERVER_AUTH_CREDENTIALS}
       - CHROMA_SERVER_AUTH_CREDENTIALS_PROVIDER=${CHROMA_SERVER_AUTH_CREDENTIALS_PROVIDER}
     ports:
-      - "8324:8324"
+      - "80:80"
     networks:
       - net
       # - traefik
     expose:
-      - 8324
+      - 80
     # labels:
     #   - "traefik.enable=true"
     #   - "traefik.http.routers.chroma.rule=Host(`chroma.local`)"
