@@ -1,5 +1,6 @@
 #!/bin/bash
-
+set -e
+service ssh start
 echo "Rebuilding hnsw to ensure architecture compatibility"
 pip install --force-reinstall --no-cache-dir chroma-hnswlib
 export IS_PERSISTENT=1
