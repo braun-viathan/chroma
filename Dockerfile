@@ -28,6 +28,6 @@ COPY --from=builder /install /usr/local
 COPY ./bin/docker_entrypoint.sh /docker_entrypoint.sh
 COPY ./ /chroma
 
-EXPOSE 80
+EXPOSE 8000
 
 CMD ["/docker_entrypoint.sh"]
