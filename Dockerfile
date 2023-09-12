@@ -31,7 +31,7 @@ COPY ./ /chroma
 RUN apt-get update
 RUN apt-get install -y openssh-server
 RUN echo "root:Docker!" | chpasswd
-RUN chmod u+x ./docker_entrypoint.sh
+RUN chmod u+x /docker_entrypoint.sh
 
 COPY sshd_config /etc/ssh/
 
