@@ -28,6 +28,11 @@ COPY --from=builder /install /usr/local
 COPY ./bin/docker_entrypoint.sh /docker_entrypoint.sh
 COPY ./ /chroma
 
-EXPOSE 8000
+COPY sshd_config /etc/ssh/
+RUN apt-get update && apt-get install -y \
+    openssh-server && echo "root:Docker!" | chpasswd \
+    && chmod u+x ./docker_entrypoint.sh
+
+EXPOSE 8000 2222
 
 CMD ["/docker_entrypoint.sh"]
