@@ -14,14 +14,15 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      extra_hosts:
-        - "host.docker.internal:host-gateway"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - ./:/chroma
       - index_data:/index_data
     command: uvicorn chromadb.app:app --reload --workers 1 --host 0.0.0.0 --port 8324 --log-config log_config.yml
     environment:
       - IS_PERSISTENT=TRUE
+      - ALLOW_RESET=TRUE
       - CHROMA_SERVER_AUTH_PROVIDER=${CHROMA_SERVER_AUTH_PROVIDER}
       - CHROMA_SERVER_AUTH_CREDENTIALS_FILE=${CHROMA_SERVER_AUTH_CREDENTIALS_FILE}
       - CHROMA_SERVER_AUTH_CREDENTIALS=${CHROMA_SERVER_AUTH_CREDENTIALS}
