@@ -27,4 +27,6 @@ jobs:
     - name: Build and push Docker Compose
       run: |
         docker-compose --env-file ./.chroma_env up -d --build
-        docker-compose push
+        docker-compose push 
+
+# Test building image
